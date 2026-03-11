@@ -66,10 +66,24 @@
           <el-form-item label="服务提供商">
             <el-radio-group v-model="settings.tts_provider">
               <el-radio label="openai">OpenAI TTS</el-radio>
+              <el-radio label="local">本地模型</el-radio>
               <el-radio label="azure" disabled>Azure Speech（开发中）</el-radio>
               <el-radio label="coqui" disabled>Coqui TTS（开发中）</el-radio>
             </el-radio-group>
           </el-form-item>
+          <template v-if="settings.tts_provider === 'local'">
+            <el-form-item label="默认声音">
+              <el-select v-model="settings.tts_voice">
+                <el-option label="声音1 - Alloy（中性）" value="alloy" />
+                <el-option label="声音2 - Echo（男性）" value="echo" />
+                <el-option label="声音3 - Fable（男性）" value="fable" />
+                <el-option label="声音4 - Onyx（男性）" value="onyx" />
+                <el-option label="声音5 - Nova（女性）" value="nova" />
+                <el-option label="声音6 - Shimmer（女性）" value="shimmer" />
+              </el-select>
+              <div class="form-tip">本地模型支持6种声音选择（当前都使用voice_source=36）</div>
+            </el-form-item>
+          </template>
           <template v-if="settings.tts_provider === 'openai'">
             <el-form-item label="模型">
               <el-select v-model="settings.tts_model">

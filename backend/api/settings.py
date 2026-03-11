@@ -24,7 +24,7 @@ class Settings(BaseModel):
     translate_model: str = "gpt-4o-mini"
 
     # TTS 设置
-    tts_provider: str = "openai"  # openai, azure, coqui
+    tts_provider: str = "openai"  # openai, local, azure, coqui
     azure_api_key: Optional[str] = None
     azure_region: Optional[str] = None
     tts_model: str = "tts-1"

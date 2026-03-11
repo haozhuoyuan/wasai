@@ -203,11 +203,14 @@ def execute_tts(
 
     subtitle_dicts = [{"translated_text": s.translated_text} for s in subtitles]
 
+    # 使用项目的目标语言作为TTS的语言
+    target_language = project.target_language
+
     try:
         audio_paths = tts_service.synthesize_subtitles(
             subtitle_dicts,
             str(audio_dir),
-            request.language
+            target_language
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"语音合成失败: {str(e)}")
